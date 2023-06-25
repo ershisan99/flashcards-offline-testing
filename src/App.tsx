@@ -6,9 +6,6 @@ export function App() {
       <Button variant="primary" as="a" href={'/link'}>
         Hello
       </Button>
-      <Button variant="primary" href={'/link'}>
-        Hello
-      </Button>
     </div>
   )
 }
