@@ -1,0 +1,40 @@
+.root {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  background-color: inherit;
+  border: 2px solid var(--color-light-900);
+  border-radius: 2px;
+
+  &:focus {
+    background-color: var(--color-bg-focus);
+  }
+
+  &:disabled {
+    cursor: initial;
+    border-color: var(--color-checkbox-disabled);
+  }
+
+  &[data-state='checked']:disabled {
+    background-color: var(--color-checkbox-disabled);
+  }
+}
+.indicator {
+  width: 24px;
+  height: 24px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
