@@ -8,8 +8,9 @@ import s from './checkbox.module.scss'
 
 const Checkbox = forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> & {
+  Omit<React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, 'onCheckedChange'> & {
     label?: string
+    onCheckedChange?: (checked: boolean) => void
   }
 >(({ className, label, ...props }, ref) => {
   return (

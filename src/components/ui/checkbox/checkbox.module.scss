@@ -13,7 +13,7 @@
   border-radius: 2px;
 
   &:focus {
-    background-color: var(--color-bg-focus);
+    outline: 1px solid orangered;
   }
 
   &:disabled {
@@ -28,6 +28,9 @@
 .indicator {
   width: 24px;
   height: 24px;
+
+  &::after {
+  }
 }
 
 .label {
