@@ -1,19 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
-import { Checkbox } from './index.ts'
+import { Checkbox } from './checkbox'
 
-const meta = {
+export default {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
 } satisfies Meta<typeof Checkbox>
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Primary: Story = {
+export const Uncontrolled = {
   args: {
-    label: 'Primary Checkbox',
+    label: 'Click here',
     disabled: false,
   },
 }

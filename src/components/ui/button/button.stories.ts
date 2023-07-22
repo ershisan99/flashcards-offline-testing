@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Logout } from '../../../assets/icons'
-
-import { Button } from './index.ts'
+import { Button } from './'
 
 const meta = {
   title: 'Components/Button',
@@ -27,18 +25,6 @@ export const Primary: Story = {
   },
 }
 
-export const PrimaryWithIcon: Story = {
-  args: {
-    variant: 'primary',
-    children: (
-      <>
-        <Logout /> Sign Out
-      </>
-    ),
-    disabled: false,
-  },
-}
-
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
@@ -55,7 +41,7 @@ export const Tertiary: Story = {
 }
 export const Link: Story = {
   args: {
-    variant: 'link',
+    variant: 'tertiary',
     children: 'Tertiary Button',
     disabled: false,
   },
@@ -69,7 +55,6 @@ export const FullWidth: Story = {
     fullWidth: true,
   },
 }
-
 export const AsLink: Story = {
   args: {
     variant: 'primary',

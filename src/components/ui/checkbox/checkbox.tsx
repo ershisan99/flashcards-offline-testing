@@ -1,30 +1,65 @@
-import { forwardRef } from 'react'
+import { FC } from 'react'
 
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
+import * as CheckboxRadix from '@radix-ui/react-checkbox'
+import * as LabelRadix from '@radix-ui/react-label'
+import { clsx } from 'clsx'
 
-import { Checked } from '../../../assets/icons'
+import { Check } from '../../../assets/icons'
+import { Typography } from '../typography'
 
 import s from './checkbox.module.scss'
+export type CheckboxProps = {
+  className?: string
+  checked?: boolean
+  onChange?: (checked: boolean) => void
+  disabled?: boolean
+  required?: boolean
+  label?: string
+  id?: string
+  position?: 'left'
+}
 
-const Checkbox = forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  Omit<React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, 'onCheckedChange'> & {
-    label?: string
-    onCheckedChange?: (checked: boolean) => void
+export const Checkbox: FC<CheckboxProps> = ({
+  checked,
+  onChange,
+  position,
+  disabled,
+  required,
+  label,
+  id,
+  className,
+}) => {
+  const classNames = {
+    container: clsx(s.container, className),
+    buttonWrapper: clsx(s.buttonWrapper, disabled && s.disabled, position === 'left' && s.left),
+    root: s.root,
+    indicator: s.indicator,
+    label: clsx(s.label, disabled && s.disabled),
   }
->(({ className, label, ...props }, ref) => {
+
   return (
-    <label className={s.label}>
-      <CheckboxPrimitive.Root ref={ref} className={s.root} {...props}>
-        <CheckboxPrimitive.Indicator className={s.indicator}>
-          <Checked />
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
-      {label}
-    </label>
+    <div className={classNames.container}>
+      <LabelRadix.Root asChild>
+        <Typography variant="body2" className={classNames.label} as={'label'}>
+          <div className={classNames.buttonWrapper}>
+            <CheckboxRadix.Root
+              className={classNames.root}
+              checked={checked}
+              onCheckedChange={onChange}
+              disabled={disabled}
+              required={required}
+              id={id}
+            >
+              {checked && (
+                <CheckboxRadix.Indicator className={classNames.indicator} forceMount>
+                  <Check />
+                </CheckboxRadix.Indicator>
+              )}
+            </CheckboxRadix.Root>
+          </div>
+          {label}
+        </Typography>
+      </LabelRadix.Root>
+    </div>
   )
-})
-
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
-
-export { Checkbox }
+}
